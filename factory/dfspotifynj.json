@@ -1,0 +1,15 @@
+{
+	"name": "dfspotifynj",
+	"properties": {
+		"trustModeClaimForMi": {
+			"value": "Disabled",
+			"editable": true
+		}
+	},
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "ad8e5140-185e-4d99-a9f5-70341996f6f9",
+		"tenantId": "489651fc-d21e-48f8-8fb1-f494ac4bf857"
+	}
+}

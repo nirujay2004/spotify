@@ -5,11 +5,15 @@
 			{
 				"name": "SQL-lake",
 				"type": "Copy",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "current",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "last_cdc",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -27,7 +31,7 @@
 					"source": {
 						"type": "AzureSqlSource",
 						"sqlReaderQuery": {
-							"value": "SELECT * \nFROM @{pipeline().parameters.schema}.@{pipeline().parameters.table}\nWHERE @{pipeline().parameters.cdc_col} > \"@{activity('last_cdc').output.value[0].cdc}\"\n",
+							"value": "SELECT * \nFROM @{pipeline().parameters.schema}.@{pipeline().parameters.table}\nWHERE @{pipeline().parameters.cdc_col} > \"@{activity('last_cdc').output.firstRow.cdc}\"\n",
 							"type": "Expression"
 						},
 						"queryTimeout": "02:00:00",
@@ -76,8 +80,6 @@
 			{
 				"name": "current",
 				"type": "SetVariable",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [],
 				"policy": {
 					"secureOutput": false,

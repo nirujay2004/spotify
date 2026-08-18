@@ -209,7 +209,7 @@
 									"type": "JsonSource",
 									"additionalColumns": [
 										{
-											"name": "new_cdc",
+											"name": "new1_cdc",
 											"value": {
 												"value": "@{activity('max_cdc').output.resultSets[0].rows[0].cdc}",
 												"type": "Expression"
